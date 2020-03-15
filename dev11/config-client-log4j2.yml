@@ -10,8 +10,9 @@ Configuration:
   appenders:
     Console:
       name: STDOUT
+      # https://logging.apache.org/log4j/log4j-2.0/manual/layouts.html
       PatternLayout:
-        Pattern: "%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+        Pattern: "%date{ISO8601}{UTC} [%15.15t] %highlight{%-5level}{FATAL=red, ERROR=red, WARN=yellow, INFO=white, DEBUG=white, TRACE=white} %-40.40logger{39} %m%n%throwable"
     File:
       name: File
       fileName: ${filename}
