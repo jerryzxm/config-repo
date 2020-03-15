@@ -12,7 +12,7 @@ Configuration:
       name: STDOUT
       # https://logging.apache.org/log4j/log4j-2.0/manual/layouts.html
       PatternLayout:
-        Pattern: "%date{ISO8601}{UTC} [%15.15t] %highlight{%-5level}{FATAL=red, ERROR=red, WARN=yellow, INFO=white, DEBUG=white, TRACE=white} %-40.40logger{39} %m%n%throwable"
+        Pattern: "%date{ISO8601}{UTC} [%15.15t] %highlight{%-5level}{FATAL=red, ERROR=red, WARN=yellow, INFO=white, DEBUG=white, TRACE=white} %-40.40logger{1.} %m%n%throwable"
     File:
       name: File
       fileName: ${filename}
