@@ -1,0 +1,46 @@
+Configuration:
+  status: warn
+  name: YAMLConfigTest
+  properties:
+    property:
+      name: filename
+      value: target/test-yaml.log
+  thresholdFilter:
+    level: debug
+  appenders:
+    Console:
+      name: STDOUT
+      # https://logging.apache.org/log4j/log4j-2.0/manual/layouts.html
+      PatternLayout:
+        Pattern: "%highlight{%date{ISO8601}{UTC} [%15.15t] %-5level %-40.40logger{1.} %m%n%throwable}{FATAL=red, ERROR=red, WARN=yellow, INFO=white, DEBUG=white, TRACE=white}"
+    File:
+      name: File
+      fileName: ${filename}
+      PatternLayout:
+        Pattern: "%date{ISO8601}{UTC} [%15.15t] %-5level %-40.40logger{1.} %m%n%throwable"
+      Filters:
+        ThresholdFilter:
+          level: error
+ 
+  Loggers:
+    logger:
+      -
+        name: org.apache.logging.log4j.test1
+        level: debug
+        additivity: false
+        ThreadContextMapFilter:
+          KeyValuePair:
+            key: test
+            value: 123
+        AppenderRef:
+          ref: STDOUT
+      -
+        name: org.apache.logging.log4j.test2
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: File
+    Root:
+      level: info
+      AppenderRef:
+        ref: STDOUT
