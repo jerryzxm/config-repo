@@ -31,7 +31,7 @@
         <logger additivity="true" level="info"  name="org.springframework.web"/>
         <logger additivity="true" level="info"  name="org.springframework.http"/>
         <logger additivity="true" level="info"  name="org.springframework.remoting"/>
-        <logger additivity="true" level="info"  name="org.springframework.cloud"/>
+        <logger additivity="true" level="WARN"  name="org.springframework.cloud"/>
         <logger additivity="true" level="WARN"  name="com.hazelcast"/>
     </Loggers>
 </Configuration>
