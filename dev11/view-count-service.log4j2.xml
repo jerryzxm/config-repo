@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <!-- TODO rename HOSTNAME_ -->
+        <Property name="LOG_DIR">${sys:log.dir:-logs}/${env:HOSTNAME_:-localhost}</Property>
+        <Property name="LOG_ARCHIVE_DIR">${LOG_DIR}/archive</Property>
+        <Property name="LOG_PATTERN_CONSOLE">%d{ISO8601} [%t] %highlight{%-5level}{FATAL=red, ERROR=red, WARN=yellow, INFO=blue, DEBUG=green, TRACE=green} %logger{36} - %msg%n</Property>
+        <Property name="LOG_PATTERN_FILE">%d{ISO8601} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_FILE_NAME">${sys:spring.application.name:-app}.log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="CONSOLE_APPENDER" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN_CONSOLE}"/>
+        </Console>
+        <RollingFile name="FILE_APPENDER" fileName="${LOG_DIR}/${LOG_FILE_NAME}"
+                     filePattern="${LOG_ARCHIVE_DIR}/${date:yyyy-MM}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}.gz">
+            <PatternLayout pattern="${LOG_PATTERN_FILE}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="WARN" additivity="true">
+            <AppenderRef ref="CONSOLE_APPENDER"/>
+            <AppenderRef ref="FILE_APPENDER"/>
+        </Root>
+
+        <logger additivity="true" level="debug" name="demo.spring.cloud.common"/>
+        <logger additivity="true" level="info"  name="org.springframework.boot"/>
+        <logger additivity="true" level="info"  name="org.springframework.web"/>
+        <logger additivity="true" level="info"  name="org.springframework.http"/>
+        <logger additivity="true" level="info"  name="org.springframework.remoting"/>
+        <logger additivity="true" level="info"  name="org.springframework.cloud"/>
+        <logger additivity="true" level="WARN"  name="com.hazelcast"/>
+    </Loggers>
+</Configuration>
