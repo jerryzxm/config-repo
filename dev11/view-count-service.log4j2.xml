@@ -26,7 +26,7 @@
             <AppenderRef ref="FILE_APPENDER"/>
         </Root>
 
-        <logger additivity="true" level="debug" name="demo.spring.cloud.common"/>
+        <logger additivity="true" level="debug" name="demo.spring.cloud"/>
         <logger additivity="true" level="info"  name="org.springframework.boot"/>
         <logger additivity="true" level="info"  name="org.springframework.web"/>
         <logger additivity="true" level="info"  name="org.springframework.http"/>
